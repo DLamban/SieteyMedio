@@ -2,7 +2,6 @@
 
 require_once 'Jugador.php';
 class JugadorIA extends Jugador{
-
     public function tomarDecision($puntuacionMax){
         if ($this->esMano==true){
             return $this->tomarDecisionBanca($puntuacionMax);

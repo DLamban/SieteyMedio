@@ -3,9 +3,8 @@
 class Jugador{
 
     private $id;
-    protected $cartas; //la clase IA necesita acceso a las cartas para tomar una decisión
+    protected $cartas;
     protected $puntos;
-    //protected $eliminado;
     protected $esMano;
 
     public function __construct($id){
@@ -16,7 +15,7 @@ class Jugador{
         $this->esMano=true;
     }
 
-    public function esMano(){
+    public function isMano(){
         return $this->esMano;
     }
 
@@ -31,8 +30,7 @@ class Jugador{
     public function empezarJuego(){
         $this->cartas=[];
         $this->puntos=0;
-        $this->eliminado=false;
-        $this->esMano=false;
+        //$this->esMano=false;
     }
 
     public function pedirCarta($baraja){

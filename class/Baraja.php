@@ -29,7 +29,7 @@ class Baraja{
     public function crearBaraja($palos){
         $cartas= [];
         foreach ($palos as $palo){
-            //usamos arrays dinamicos y las funciones push y pop de PHP
+            //usamos arrays dinamicos y la función push PHP
             for ($i=0;$i<10;$i++){
                 $carta= new Carta($palo,$i+1);
                 array_push($cartas,$carta);

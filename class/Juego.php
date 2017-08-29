@@ -12,7 +12,6 @@ class Juego{
     public function __construct(){
 
         $this->baraja= new Baraja();
-        $this->baraja->Barajear();
         $this->empezarJuego();
 
     }
@@ -27,9 +26,9 @@ class Juego{
             //por el momento, el jugador humano es siempre el 0
             $_jugador=$i==0? new Jugador($id):new JugadorIA($id);
             $_jugador->empezarJuego();
+            if ($i==($this->numJug-1))$_jugador->setMano();
             array_push($this->jugadores,$_jugador);
             $id++;
-            if ($i+1==$this->numJug) $_jugador->setMano();
         }
         $this->ejecutarRonda();
     }
@@ -80,7 +79,7 @@ class Juego{
             $decision= $this->esperandoInput();
         }
 
-        if ($decision=="pedir"){
+        if ($decision=="pedir" && !$jugador->estaEliminado()){
             $jugador->pedirCarta($this->baraja);
             return true;
         }
@@ -96,7 +95,8 @@ class Juego{
             echo "¡la banca pierde!\n";
             $arrayGanadores=[];
             foreach ($this->jugadores as $jugador){
-                if ($jugador->esMano()) continue;
+                if ($jugador->isMano()) continue;
+
                 if (!$jugador->estaEliminado()) array_push($arrayGanadores,$jugador);
             }
             foreach ($arrayGanadores as $ganador){
